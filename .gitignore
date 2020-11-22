@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+.vs/
+bin/
+obj/
+packages/
+fonts/
+
+*.dll
+*.xml
+*.nupkg
+/App_Data/AppDataBase_log.ldf
