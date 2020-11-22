@@ -11,3 +11,4 @@ fonts/
 *.xml
 *.nupkg
 /App_Data/AppDataBase_log.ldf
+/App_Data/AppDataBase.mdf

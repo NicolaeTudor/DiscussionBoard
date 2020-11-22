@@ -16,6 +16,7 @@ namespace ProjectDAW.Models
         }
         public DbSet<TblCategory> TblCategory { get; set; }
         public DbSet<TblUser> TblUser { get; set; }
+        public DbSet<TblPost> TblPost { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

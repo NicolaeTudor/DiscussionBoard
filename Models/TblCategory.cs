@@ -13,9 +13,5 @@ namespace ProjectDAW.Models
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        [ForeignKey(nameof(UserCreated))]
-        public int UserCreatedId { get; set; }
-
-        public virtual TblUser UserCreated { get; set; }
     }
 }

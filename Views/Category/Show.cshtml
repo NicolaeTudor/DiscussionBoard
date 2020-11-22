@@ -1,0 +1,22 @@
+﻿@model ProjectDAW.ViewModels.Category
+
+@{
+    ViewBag.Title = "Show";
+}
+
+@Model.Name
+@Model.Description
+
+
+@Html.ActionLink("Edit Category", "Edit", new { id = Model.CategoryId })
+
+@using (Html.BeginForm("Delete", "Category", FormMethod.Post))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.CategoryId"/>
+    //@Html.HiddenFor(model => model.CategoryId)
+    <button type="submit" class="btn btn-danger">Delete Category</button>
+}
+<h2>Show</h2>
+

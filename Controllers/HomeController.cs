@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectDAW.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,10 @@ namespace ProjectDAW.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly AppDbContext _context = new AppDbContext();
         public ActionResult Index()
         {
+            var post = _context.TblPost;
             return View();
         }
 

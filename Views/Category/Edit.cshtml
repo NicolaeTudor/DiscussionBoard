@@ -1,0 +1,19 @@
+﻿@model ProjectDAW.ViewModels.Category
+
+@using (Html.BeginForm("CreateOrEdit", "Category", FormMethod.Post))
+{
+    if (Model.CategoryId != 0)
+    {
+        @Html.HiddenFor(m => m.CategoryId)
+    }
+    @Html.LabelFor(m => m.Name)
+    @Html.EditorFor(m => m.Name)
+    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+
+    @Html.LabelFor(m => m.Description)
+    @Html.EditorFor(m => m.Description)
+    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+
+    <button type="submit">@ViewBag.SubmitAction</button>
+}
+
