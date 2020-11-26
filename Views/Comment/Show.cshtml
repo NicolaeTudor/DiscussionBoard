@@ -1,0 +1,21 @@
+﻿@model ProjectDAW.ViewModels.Comment
+
+@{}
+
+@using (Html.BeginForm("Delete", "Comment", FormMethod.Post, new { @id = "DeleteCommentForm", @class = "form-inline" }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.CommentId" />
+    <input type="hidden" name="postId" value="@Model.PostId" />
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Html.ActionLink("Back to post", "Show", "Post", new { id = Model.PostId }, new { @class = "btn btn-primary" })</div>
+    <div class="panel-body">@Model.Content</div>
+    <div class="panel-footer">
+        @*Aici trb sa faci tu metoda a.i Post/Show*@
+        @Html.ActionLink("Edit Comment", "Edit", new { id = Model.CommentId }, new { @class = "btn btn-primary" })
+        <button type="submit" class="btn btn-danger" onclick="document.getElementById('DeleteCommentForm').submit();">Delete Comment</button>
+    </div>
+</div>

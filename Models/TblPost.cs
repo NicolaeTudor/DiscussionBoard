@@ -9,6 +9,11 @@ namespace ProjectDAW.Models
 {
     public class TblPost
     {
+        public TblPost()
+        {
+            TblComments = new HashSet<TblComment>();
+        }
+
         [Key]
         public int PostId { get; set; }
         [Required]
@@ -19,5 +24,7 @@ namespace ProjectDAW.Models
         public int CategoryId { get; set; }
 
         public virtual TblCategory Category { get; set; }
+        
+        public virtual ICollection<TblComment> TblComments { get; set; }
     }
 }

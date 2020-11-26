@@ -6,15 +6,11 @@ using System.Web;
 
 namespace ProjectDAW.ViewModels
 {
-    public class Post
+    public class Comment
     {
+        public int CommentId { get; set; }
         public int PostId { get; set; }
-        public int CategoryId { get; set; }
-        [Required]
-        public string Title { get; set; }
         [Required]
         public string Content { get; set; }
-        
-        public List<Comment> Comments { get; set; }
     }
 }

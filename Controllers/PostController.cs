@@ -25,12 +25,19 @@ namespace ProjectDAW.Controllers
             TblPost post = _context.TblPost
                                    .FirstOrDefault(p => p.PostId == id);
 
+            List<Comment> comments = post.TblComments.Select(c => new Comment {
+                CommentId = c.CommentId,
+                PostId = c.PostId,
+                Content = c.Content
+            }).ToList();
+
             var model = new Post
             {
                 Title = post.Title,
                 PostId = post.PostId,
                 Content = post.Content,
-                CategoryId = post.CategoryId
+                CategoryId = post.CategoryId,
+                Comments = comments
             };
 
             return View(model);
