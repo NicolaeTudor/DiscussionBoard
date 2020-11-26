@@ -197,6 +197,7 @@
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Post\Show.cshtml" />
     <Content Include="Views\Post\Edit.cshtml" />
+    <Content Include="Views\Shared\_TempDataDismissableAlert.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

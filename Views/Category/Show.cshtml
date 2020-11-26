@@ -24,7 +24,7 @@
 @foreach (var post in Model.CategoryPosts)
 {
     <div class="panel panel-default">
-        <div class="panel-heading">@Html.ActionLink(post.Title, "Show", "Post", new { id = post.PostId }, new { })</div>
+        <div class="panel-heading">@Html.ActionLink(string.IsNullOrWhiteSpace(post.Title) ? "No Title" : post.Title, "Show", "Post", new { id = post.PostId }, new { })</div>
         <div class="panel-body">@post.Content</div>
     </div>
 }

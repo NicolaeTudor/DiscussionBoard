@@ -20,7 +20,7 @@
         {
             //  This method will be called after migrating to the latest version.
 
-            for(int i = 0; i < 10; i++)
+            for(int i = 1; i <= 10; i++)
             {
                 var category = new TblCategory
                 {

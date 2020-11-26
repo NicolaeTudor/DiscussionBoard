@@ -13,9 +13,12 @@ namespace ProjectDAW.Models
         public int PostId { get; set; }
         [Required]
         public string Title { get; set; }
+        [Required]
         public string Content { get; set; }
+        [Required]
         public DateTime CreatedDate { get; set; }
         [ForeignKey(nameof(Category))]
+        [Required]
         public int CategoryId { get; set; }
 
         public virtual TblCategory Category { get; set; }

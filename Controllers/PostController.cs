@@ -41,7 +41,7 @@ namespace ProjectDAW.Controllers
         {
             ViewBag.Title = "Create Post";
             ViewBag.SubmitAction = "Create Post";
-            return View(nameof(Edit), new Post());
+            return View(nameof(Edit), new Post { CategoryId = categoryId });
         }
 
         [HttpGet]
@@ -67,6 +67,11 @@ namespace ProjectDAW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrEdit(Post post)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(nameof(Edit), post);
+            }
+
             TblPost dbPost = _context.TblPost.Find(post.PostId);
 
             if (dbPost == null)
@@ -79,9 +84,16 @@ namespace ProjectDAW.Controllers
             dbPost.Title = post.Title;
             dbPost.Content = post.Content;
 
+            if (!TryValidateModel(dbPost))
+            {
+                return View(nameof(Edit), post);
+            }
+
             _context.TblPost.AddOrUpdate(dbPost);
             _context.SaveChanges();
 
+            TempData["message"] = "Post Updated/Created!";
+            TempData["messageColorClass"] = "alert-success";
             return RedirectToAction(nameof(Show), new { id = dbPost.PostId });
         }
 
@@ -93,6 +105,8 @@ namespace ProjectDAW.Controllers
             _context.TblPost.Remove(post);
             _context.SaveChanges();
 
+            TempData["message"] = "Post Deleted!";
+            TempData["messageColorClass"] = "alert-danger";
             return RedirectToAction(nameof(CategoryController.Show), "Category", new { id = categoryId});
         }
     }

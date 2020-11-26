@@ -77,6 +77,11 @@ namespace ProjectDAW.Controllers
         [HttpPost]
         public ActionResult CreateOrEdit(Category category)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(nameof(Edit), category);
+            }
+
             TblCategory dbCategory = _context.TblCategory.Find(category.CategoryId);
 
             if(dbCategory == null)
@@ -87,8 +92,16 @@ namespace ProjectDAW.Controllers
             dbCategory.Description = category.Description;
             dbCategory.Name = category.Name;
 
+            if (!TryValidateModel(dbCategory))
+            {
+                return View(nameof(Edit), category);
+            }
+
             _context.TblCategory.AddOrUpdate(dbCategory);
             _context.SaveChanges();
+
+            TempData["message"] = "Category Updated/Created!";
+            TempData["messageColorClass"] = "alert-success";
 
             return RedirectToAction(nameof(Show), new { id = dbCategory.CategoryId });
         }
@@ -101,6 +114,8 @@ namespace ProjectDAW.Controllers
             _context.TblCategory.Remove(category);
             _context.SaveChanges();
 
+            TempData["message"] = "Category Deleted!";
+            TempData["messageColorClass"] = "alert-danger";
             return RedirectToAction(nameof(Index));
         }
     }
