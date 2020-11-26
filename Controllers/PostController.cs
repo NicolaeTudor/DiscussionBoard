@@ -29,7 +29,8 @@ namespace ProjectDAW.Controllers
             {
                 Title = post.Title,
                 PostId = post.PostId,
-                Content = post.Content
+                Content = post.Content,
+                CategoryId = post.CategoryId
             };
 
             return View(model);
@@ -86,13 +87,13 @@ namespace ProjectDAW.Controllers
 
         [HttpDelete]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, int categoryId)
         {
-            var category = _context.TblPost.Find(id);
-            _context.TblPost.Remove(category);
+            var post = _context.TblPost.Find(id);
+            _context.TblPost.Remove(post);
             _context.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CategoryController.Show), "Category", new { id = categoryId});
         }
     }
 }

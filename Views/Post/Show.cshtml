@@ -9,10 +9,11 @@
     @Html.HttpMethodOverride(HttpVerbs.Delete)
     @Html.AntiForgeryToken()
     <input type="hidden" name="id" value="@Model.PostId" />
+    <input type="hidden" name="categoryId" value="@Model.CategoryId" />
 }
 
 <div class="panel panel-default">
-    <div class="panel-heading">@Model.Title</div>
+    <div class="panel-heading">@Model.Title @Html.ActionLink("Back to category", "Show", "Category", new { id = Model.CategoryId }, new { @class = "btn btn-primary" })</div>
     <div class="panel-body">@Model.Content</div>
     <div class="panel-footer">
         @*Aici trb sa faci tu metoda a.i Category/Show*@
