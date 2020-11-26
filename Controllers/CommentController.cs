@@ -64,6 +64,11 @@ namespace ProjectDAW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrEdit(Comment comment)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(nameof(Edit), comment);
+            }
+
             TblComment dbComment = _context.TblComment.Find(comment.CommentId);
 
             if (dbComment == null)
@@ -74,6 +79,14 @@ namespace ProjectDAW.Controllers
             }
 
             dbComment.Content = comment.Content;
+
+            if (!TryValidateModel(dbComment))
+            {
+                return View(nameof(Edit), comment);
+            }
+
+            TempData["message"] = "Comment Updated/Created!";
+            TempData["messageColorClass"] = "alert-success";
 
             _context.TblComment.AddOrUpdate(dbComment);
             _context.SaveChanges();
@@ -89,6 +102,8 @@ namespace ProjectDAW.Controllers
             _context.TblComment.Remove(comment);
             _context.SaveChanges();
 
+            TempData["message"] = "Comment Deleted!";
+            TempData["messageColorClass"] = "alert-danger";
             return RedirectToAction(nameof(PostController.Show), "Post", new { id = postId});
         }
     }
