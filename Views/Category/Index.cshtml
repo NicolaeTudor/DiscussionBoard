@@ -1,16 +1,24 @@
 ﻿@model IEnumerable<ProjectDAW.ViewModels.Category>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Categories";
 }
+
+@Html.ActionLink("Create Category", "Create", new { }, new { @class = "btn btn-success" })
 
 <ul>
     @foreach (var category in Model)
     {
-        <li>@Html.ActionLink(category.Name, "Show", new { id = category.CategoryId })</li>
+        <li>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink(category.Name, "Show", new { id = category.CategoryId })
+                </div>
+                <div class="panel-body">@category.Description</div>
+            </div>
+        </li>
     }
 </ul>
 
-@Html.ActionLink("Create Category", "Create")
 <h2>Index</h2>
 
