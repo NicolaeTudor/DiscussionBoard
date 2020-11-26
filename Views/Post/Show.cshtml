@@ -1,0 +1,25 @@
+﻿@model ProjectDAW.ViewModels.Post
+
+@{
+    ViewBag.Title = $"Category - {Model.Title}";
+}
+
+@using (Html.BeginForm("Delete", "Post", FormMethod.Post, new { @id = "DeletePostForm", @class = "form-inline" }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.PostId" />
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.Title</div>
+    <div class="panel-body">@Model.Content</div>
+    <div class="panel-footer">
+        @*Aici trb sa faci tu metoda a.i Category/Show*@
+        @Html.ActionLink("Add Comment", "Create", "Comment", new { id = Model.PostId }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Edit Post", "Edit", new { id = Model.PostId }, new { @class = "btn btn-primary" })
+        <button type="submit" class="btn btn-danger" onclick="document.getElementById('DeletePostForm').submit();">Delete Post</button>
+    </div>
+</div>
+
+@*Aici adauga commentarile*@

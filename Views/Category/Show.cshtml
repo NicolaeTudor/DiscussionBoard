@@ -15,7 +15,7 @@
     <div class="panel-heading">@Model.Name</div>
     <div class="panel-body">@Model.Description</div>
     <div class="panel-footer">
-        @Html.ActionLink("New Post", "Create", "Post", new { id = Model.CategoryId }, new { @class = "btn btn-success" })
+        @Html.ActionLink("New Post", "Create", "Post", new { categoryId = Model.CategoryId }, new { @class = "btn btn-success" })
         @Html.ActionLink("Edit Category", "Edit", new { id = Model.CategoryId }, new { @class = "btn btn-primary" })
         <button type="submit" class="btn btn-danger" onclick="document.getElementById('DeleteCategoryForm').submit();">Delete Category</button>
     </div>
