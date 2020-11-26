@@ -2,6 +2,7 @@
 using ProjectDAW.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
@@ -27,13 +28,22 @@ namespace ProjectDAW.Controllers
 
         public ActionResult Show(int id)
         {
-            var category = _context.TblCategory.Find(id);
+            TblCategory category = _context.TblCategory
+                                           .Include(c => c.TblPost)
+                                           .FirstOrDefault(c => c.CategoryId == id);
 
-            var model =  new Category{
-                            Name = category.Name,
-                            CategoryId = category.CategoryId,
-                            Description = category.Description
-                         };
+            List<PostListItem> categoryPosts = category.TblPost.Select(p => new PostListItem {
+                PostId = p.PostId,
+                Title = p.Title,
+                Content = p.Content
+            }).ToList();
+
+            var model = new Category{
+                Name = category.Name,
+                CategoryId = category.CategoryId,
+                Description = category.Description,
+                CategoryPosts = categoryPosts
+            };
 
             return View(model);
         }

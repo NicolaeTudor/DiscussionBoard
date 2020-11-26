@@ -36,6 +36,7 @@
                 var post = new TblPost
                 {
                     CategoryId = category.CategoryId,
+                    Title = $"project {i} progress update",
                     Content = $"Started The project {i}",
                     CreatedDate = DateTime.Now,
                     PostId = i

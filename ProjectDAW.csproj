@@ -129,12 +129,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202011221551297_Initial.cs" />
     <Compile Include="Migrations\202011221551297_Initial.designer.cs">
       <DependentUpon>202011221551297_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011261431435_Add-Posts-To-Category.cs" />
+    <Compile Include="Migrations\202011261431435_Add-Posts-To-Category.designer.cs">
+      <DependentUpon>202011261431435_Add-Posts-To-Category.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
@@ -144,6 +149,7 @@
     <Compile Include="Models\TblUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Category.cs" />
+    <Compile Include="ViewModels\PostListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AppDataBase.mdf" />
@@ -189,7 +195,9 @@
     <Content Include="Views\Category\Show.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Post\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -206,6 +214,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011221551297_Initial.resx">
       <DependentUpon>202011221551297_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011261431435_Add-Posts-To-Category.resx">
+      <DependentUpon>202011261431435_Add-Posts-To-Category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

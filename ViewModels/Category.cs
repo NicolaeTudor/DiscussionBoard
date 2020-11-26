@@ -13,5 +13,6 @@ namespace ProjectDAW.ViewModels
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
+        public List<PostListItem> CategoryPosts { get; set; }
     }
 }

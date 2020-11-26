@@ -9,9 +9,17 @@ namespace ProjectDAW.Models
 {
     public class TblCategory
     {
+        public TblCategory()
+        {
+            TblPost = new HashSet<TblPost>();
+        }
+
         [Key]
         public int CategoryId { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public virtual ICollection<TblPost> TblPost { get; set; }
     }
 }
